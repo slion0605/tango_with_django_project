@@ -78,7 +78,7 @@ class Chapter6IndexViewTests(TestCase):
 
         # Does the boldmessage still exist? A surprising number of people delete it here.
         self.assertTrue('boldmessage' in self.response.context, f"{FAILURE_HEADER}The 'boldmessage' variable couldn't be found in the context dictionary for the index() view. Did you delete it?{FAILURE_FOOTER}")
-        self.assertEqual(expected_boldmessage, self.response.context['boldmessage'], f"{FAILURE_HEADER}Where did {expected_boldmessage} go in the index() view?{FAILURE_FOOTER}")
+        self.assertEquals(expected_boldmessage, self.response.context['boldmessage'], f"{FAILURE_HEADER}Where did {expected_boldmessage} go in the index() view?{FAILURE_FOOTER}")
 
         # Check that categories exists in the context dictionary, that it references the correct objects, and the order is spot on.
         self.assertTrue('categories' in self.response.context, f"{FAILURE_HEADER}We couldn't find a 'categories' variable in the context dictionary within the index() view. Check the instructions in the book, and try again.{FAILURE_FOOTER}")
@@ -211,7 +211,7 @@ class Chapter6CategoryViewTests(TestCase):
         category.name = "Unscrupulous Nonsense"
         category.save()
 
-        self.assertEqual('unscrupulous-nonsense', category.slug, f"{FAILURE_HEADER}When changing the name of a category, the slug attribute was not updated (correctly) to reflect this change. Did you override the save() method in the Category model correctly?{FAILURE_FOOTER}")
+        self.assertEquals('unscrupulous-nonsense', category.slug, f"{FAILURE_HEADER}When changing the name of a category, the slug attribute was not updated (correctly) to reflect this change. Did you override the save() method in the Category model correctly?{FAILURE_FOOTER}")
 
     def test_context_dictionary(self):
         """
