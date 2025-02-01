@@ -7,6 +7,7 @@ class Category(models.Model):
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
+    max_length = 128
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -21,8 +22,10 @@ class Category(models.Model):
       return self.name
 
 class Page(models.Model):
+    title_length = 128
+    url_length = 200
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=title_length)
     url = models.URLField()
     views = models.IntegerField(default=0)
     def __str__(self):
